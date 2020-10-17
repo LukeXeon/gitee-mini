@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/boot/main",
     "pages/index/main",
     "pages/test/main"
   ],

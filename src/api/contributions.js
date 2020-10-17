@@ -7,7 +7,7 @@ export default {
   async getContributions(username) {
     const url = `https://gitee.com/${username}/contribution_calendar?year=`
     let response = await utils.request("GET", url, 'text', null, {
-      'content-type': 'application/x-www-form-urlencoded',  //默认值
+      'content-type': 'application/x-www-form-urlencoded',
       Accept: '*/*',
       'X-Requested-With': 'XMLHttpRequest',
     })

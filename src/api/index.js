@@ -5,6 +5,7 @@ async function request(method, url, body) {
   return await utils.request(
     method,
     url,
+    'json',
     body,
     {
       'Content-Type': 'application/json;charset=UTF-8',
