@@ -16,9 +16,12 @@ async function request(method, url, body) {
 export default {
   async login(username, password) {
     const url = `https://gitee.com/oauth/token?grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&client_id=${encodeURIComponent(clientId)}&client_secret=${encodeURIComponent(clientSecret)}&scope=${encodeURIComponent('user_info projects pull_requests issues notes keys hook groups gists enterprises')}`;
-    return utils.request("POST", url, 'json', null, {
+    const response = await utils.request("POST", url, 'json', null, {
       'content-type': 'application/x-www-form-urlencoded'
     })
+    await utils.setValue('access_token', response['access_token']);
+    await utils.setValue('refresh_token', response['refresh_token']);
+    return response;
   },
   async checkLogin() {
     let refreshToken = await utils.getValue('refresh_token')

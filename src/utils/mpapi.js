@@ -50,7 +50,7 @@ export default {
       })
     })
   },
-  navigateTo(toUrl, query){
+  navigateTo(toUrl, query) {
     return new Promise((resolve, reject) => {
       mpvue.navigateTo({
         url: `${toUrl}?${queryString.stringify(query)}`,
@@ -59,34 +59,42 @@ export default {
       })
     })
   },
-  getClipboard() {
-    return new Promise((resolve, reject) => {
-      mpvue.getClipboard({
-        success: resolve,
-        fail: reject,
-      });
-    })
-  },
+  // getClipboard() {
+  //   return new Promise((resolve, reject) => {
+  //     mpvue.getClipboard({
+  //       success: resolve,
+  //       fail: reject,
+  //     });
+  //   })
+  // },
   confirm(title, content, confirmButtonText, cancelButtonText) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       mpvue.confirm({
         title,
         content,
         confirmButtonText,
         cancelButtonText,
-        success: resolve,
-        fail: reject
+        success: () => {
+          resolve(true)
+        },
+        fail: () => {
+          resolve(false)
+        },
       });
     })
   },
   alert(title, content, buttonText) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       mpvue.alert({
         title,
         content,
         buttonText,
-        success: resolve,
-        fail: reject,
+        success: () => {
+          resolve(true)
+        },
+        fail: () => {
+          resolve(false)
+        },
       });
     })
   }

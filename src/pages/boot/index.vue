@@ -1,16 +1,12 @@
 <template>
   <div class="wrapper">
-    <div style="flex: 1;align-items: center;justify-content: center">
-      <div style="flex-direction: column;align-items: center">
-        <image class="image"
-               style="margin-top: 250rpx"
-               :src="logo"/>
-        <text style="margin-top: 40rpx;font-size: 30rpx">{{text}}</text>
-      </div>
-    </div>
-    <div class="operations">
+    <image class="image"
+           :src="logo"/>
+    <text class="text">{{text}}</text>
+    <div class="button-wrapper">
       <button class="button" v-if="buttonEnable"
-              @click="onClick">{{buttonText}}</button>
+              @click="onClick">{{buttonText}}
+      </button>
     </div>
   </div>
 </template>
@@ -24,7 +20,7 @@
     name: "boot",
     async created() {
       if (await gitee.checkLogin()) {
-        await utils.redirectTo('pages/index/main')
+        await utils.redirectTo('/pages/index/main')
       } else {
         this.buttonEnable = true
       }
@@ -33,10 +29,16 @@
       async onClick() {
         let first = await utils.getValue('first-boot')
         if (first === null) {
-          const reps = await utils.alert("这是一个开源项目", "它不会收集任何信息，甚至连自己得服务器都没有，请放心授权此APP。", "我已确认")
-        } else {
-
+          const reps = await utils.alert(
+            "这是一个开源项目",
+            "它不会收集任何信息，甚至连自己得服务器都没有，请放心授权此APP。",
+            "我已确认"
+          )
+          if (!reps) {
+            return
+          }
         }
+        await utils.redirectTo('/pages/login/main')
       }
     },
     data() {
@@ -53,32 +55,44 @@
 <style scoped>
   .wrapper {
     flex: 1;
-    width: 750rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 750px;
     align-items: center;
+    flex-direction: column;
     background-color: white;
   }
 
   .image {
-    width: 429rpx;
-    height: 135rpx;
+    width: 429px;
+    height: 135px;
+    margin-top: 200px
   }
 
-  .operations {
-    height: 400px;
-    flex: 0;
-    flex-direction: row;
-    justify-content: center;
+  .text {
+    margin-top: 40px;
+    font-size: 30px
+  }
+
+  .button-wrapper {
+    flex: 1;
+    width: 750px;
     align-items: center;
+    justify-content: flex-end;
   }
 
   .button {
+    margin-bottom: 200px;
     align-items: center;
     justify-content: center;
-    border-radius: 10rpx;
-    height: 100rpx;
-    width: 600rpx;
+    border-radius: 10px;
+    height: 100px;
+    width: 600px;
     background-color: #238FFF;
     color: white;
-    font-size: 35rpx
+    font-size: 35px
   }
 </style>

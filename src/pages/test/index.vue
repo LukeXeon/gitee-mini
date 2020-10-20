@@ -19,7 +19,7 @@
     methods: {
       test() {
         contributions.getContributions('micro-world').then(resp => {
-          utils.alert("","a","a")
+          utils.alert("", "a", "a")
         }).catch(resp => {
           console.log(resp)
         })
@@ -35,8 +35,9 @@
 <style scoped>
   .wrapper {
     flex: 1;
-    height: 700rpx;
-    width: 750rpx;
+    height: 700px;
+    width: 750px;
     background-color: forestgreen;
   }
+
 </style>

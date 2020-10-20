@@ -31,25 +31,32 @@ export default {
 </script>
 
 <style>
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}
-/* this rule will be remove */
 
 div{
-  display:flex;
+  box-sizing: border-box;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  flex-shrink: 0;
+  align-content: flex-start;
+  border: 0 solid black;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
 }
 
 text{
+  box-sizing: border-box;
+  display: block;
+  font-size: 32px;
+  white-space: pre-wrap;
+}
+
+button{
+  display: flex;
+}
+
+
+input{
   display: flex;
 }
 
